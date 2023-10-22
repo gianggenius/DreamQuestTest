@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66b27fb458ab54d658075290fe61a4ad, type: 3}
+  m_Name: ObjectsDatabaseSO
+  m_EditorClassIdentifier: 
+  objectsData:
+  - Name: block 1
+    ID: 1
+    Size: {x: 1, y: 1}
+    Prefab: {fileID: 1027487349371992023, guid: 61b46aa58a6d944cb94eac9eef0f5885,
+      type: 3}
+  - Name: block 2
+    ID: 2
+    Size: {x: 1, y: 1}
+    Prefab: {fileID: 6631656457501181593, guid: 05ba3a49229bb4f0e88bbad5dec8f3b1,
+      type: 3}
+  - Name: block 3
+    ID: 3
+    Size: {x: 1, y: 1}
+    Prefab: {fileID: 1027487349371992023, guid: 61fb7c90f46ee431bbd077f96b4fe5e6,
+      type: 3}
+  - Name: block 4
+    ID: 4
+    Size: {x: 1, y: 1}
+    Prefab: {fileID: 1027487349371992023, guid: ce8c115aba12c4b74af8758b01c6c7c6,
+      type: 3}
+  - Name: block 5
+    ID: 5
+    Size: {x: 1, y: 1}
+    Prefab: {fileID: 1027487349371992023, guid: 546d6f00012ae4623b2d879d14b21256,
+      type: 3}
