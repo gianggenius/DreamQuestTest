@@ -7,12 +7,17 @@ namespace _Game._02.Scripts.Gameplay
 {
     public class InventoryManager : BaseInventoryManager, IEventListener<ObjectItemChangedEvent>, IEventListener<PlacementSuccessEvent>, IEventListener<DestructionEvent>
     {
+        /// <summary>
+        /// Default items that will be added to the inventory when the game starts and no save data is found
+        /// </summary>
         [SerializeField] private List<ObjectItem> defaultItems = new();
 
+        // Reference of all object data in the game loaded after GameManager is initialized
         private List<ObjectData> _objectData;
 
         private void OnEnable()
         {
+            // We will need to update inventory when an object is placed or destroyed
             EventManager.AddListener<ObjectItemChangedEvent>(this);
             EventManager.AddListener<PlacementSuccessEvent>(this);
             EventManager.AddListener<DestructionEvent>(this);
@@ -25,6 +30,10 @@ namespace _Game._02.Scripts.Gameplay
             EventManager.RemoveListener<DestructionEvent>(this);
         }
 
+        /// <summary>
+        /// Initialize inventory with save data or default items
+        /// </summary>
+        /// <param name="saveData"></param>
         public void Initialize(InventorySaveData saveData)
         {
             _objectData = GameManager.Instance.ObjectsData;
@@ -50,6 +59,10 @@ namespace _Game._02.Scripts.Gameplay
             }
         }
 
+        /// <summary>
+        /// Get save data from inventory
+        /// </summary>
+        /// <returns></returns>
         public InventorySaveData GetSaveData()
         {
             var inventorySaveData = new InventorySaveData();
@@ -64,6 +77,10 @@ namespace _Game._02.Scripts.Gameplay
             return inventorySaveData;
         }
 
+        /// <summary>
+        /// When receive an item changed event, we will add or remove quantity of item from inventory
+        /// </summary>
+        /// <param name="itemChangedEvent"></param>
         public void OnReceiveEvent(ObjectItemChangedEvent itemChangedEvent)
         {
             if (itemChangedEvent.Amount > 0)
@@ -76,6 +93,10 @@ namespace _Game._02.Scripts.Gameplay
             }
         }
 
+        /// <summary>
+        /// When receive a placement success event, we will remove the item from inventory
+        /// </summary>
+        /// <param name="placementEvent"></param>
         public void OnReceiveEvent(PlacementSuccessEvent placementEvent)
         {
             if (placementEvent is { IsNewSpawn: true})
@@ -84,6 +105,10 @@ namespace _Game._02.Scripts.Gameplay
             }
         }
 
+        /// <summary>
+        /// When receive a destruction event, we will add the item back to inventory
+        /// </summary>
+        /// <param name="destructionEvent"></param>
         public void OnReceiveEvent(DestructionEvent destructionEvent)
         {
             AddItem(destructionEvent.ObjectData, 1);
